@@ -92,17 +92,13 @@ def infer_all_images_trt(engine):
     return results
 
 # DO inference with TRT
+print "Warm up..."
+for image in images_trt:
+    _ = engine_single.infer(image)
+
 print "Single Presicion..."
 infer_all_images_trt(engine_single)
 print "Half precision..."
 infer_all_images_trt(engine_half)
-
-#for i in range(len(results_trt_single)):
-#    plt.imshow(images_trt[i, 0, 0],  cmap='gray')
-#    plt.show()
-#    print "Single Presicion...."
-#    print results_trt_single[i][0][0][0]
-#    print "Half Preciscion...."
-#    print results_trt_half[i][0][0][0]
 
 
